@@ -1,0 +1,122 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`cardsFromPgnLines turns PGN lines into flashcards 1`] = `
+Array [
+  Object {
+    "correctMove": "e4",
+    "previousMoves": Array [],
+  },
+  Object {
+    "correctMove": "Nc3",
+    "previousMoves": Array [
+      "e4",
+      "e5",
+    ],
+  },
+  Object {
+    "correctMove": "f4",
+    "previousMoves": Array [
+      "e4",
+      "e5",
+      "Nc3",
+      "Nf6",
+    ],
+  },
+  Object {
+    "correctMove": "e5",
+    "previousMoves": Array [
+      "e4",
+      "e5",
+      "Nc3",
+      "Nf6",
+      "f4",
+      "exf4",
+    ],
+  },
+  Object {
+    "correctMove": "Nf3",
+    "previousMoves": Array [
+      "e4",
+      "e5",
+      "Nc3",
+      "Nf6",
+      "f4",
+      "exf4",
+      "e5",
+      "Ng8",
+    ],
+  },
+  Object {
+    "correctMove": "d4",
+    "previousMoves": Array [
+      "e4",
+      "e5",
+      "Nc3",
+      "Nf6",
+      "f4",
+      "exf4",
+      "e5",
+      "Ng8",
+      "Nf3",
+      "d6",
+    ],
+  },
+  Object {
+    "correctMove": "Qe2",
+    "previousMoves": Array [
+      "e4",
+      "e5",
+      "Nc3",
+      "Nf6",
+      "f4",
+      "exf4",
+      "e5",
+      "Ng8",
+      "Nf3",
+      "d6",
+      "d4",
+      "dxe5",
+    ],
+  },
+  Object {
+    "correctMove": "Qxe5+",
+    "previousMoves": Array [
+      "e4",
+      "e5",
+      "Nc3",
+      "Nf6",
+      "f4",
+      "exf4",
+      "e5",
+      "Ng8",
+      "Nf3",
+      "d6",
+      "d4",
+      "dxe5",
+      "Qe2",
+      "Bb4",
+    ],
+  },
+  Object {
+    "correctMove": "Bxf4",
+    "previousMoves": Array [
+      "e4",
+      "e5",
+      "Nc3",
+      "Nf6",
+      "f4",
+      "exf4",
+      "e5",
+      "Ng8",
+      "Nf3",
+      "d6",
+      "d4",
+      "dxe5",
+      "Qe2",
+      "Bb4",
+      "Qxe5+",
+      "Qe7",
+    ],
+  },
+]
+`;
