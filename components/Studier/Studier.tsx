@@ -114,9 +114,16 @@ const Studier: FC<StudierProps> = ({ decks }) => {
           totalWrong={totalMistakes}
         />
         <div className="relative">
-          <Transition in timeout={200} appear exit={false} nodeRef={nodeRef}>
+          <Transition
+            in
+            timeout={200}
+            appear
+            exit={false}
+            nodeRef={nodeRef}
+            key={studyState.studyingCardIdentifier}
+          >
             {state => (
-              <div ref={nodeRef} key={studyState.studyingCardIdentifier}>
+              <div ref={nodeRef}>
                 <Chessboard
                   position={getPosition(state)}
                   boardOrientation={orientation}
