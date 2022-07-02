@@ -1,0 +1,40 @@
+name: ci
+on: [push]
+jobs:
+  test-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - run: yarn install
+      - run: yarn test
+      - run: yarn build
+      - run: yarn export
+
+  publish-website:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    needs: test-and-build
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - run: yarn install
+      - run: yarn build
+        env:
+          ASSET_PREFIX: /chess-flashcards/
+          BASE_PATH: /chess-flashcards
+      - run: yarn export
+        env:
+          ASSET_PREFIX: /chess-flashcards/
+          BASE_PATH: /chess-flashcards
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out
