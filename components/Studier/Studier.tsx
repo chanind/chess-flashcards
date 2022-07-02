@@ -21,6 +21,7 @@ import {
 import StudyComplete from './StudyComplete';
 import ProgressBar from './ProgressBar';
 import Pill from '../Pill';
+import StudyChessBoard from './StudyChessBoard';
 
 export interface StudierProps {
   decks: Deck[];
@@ -124,19 +125,16 @@ const Studier: FC<StudierProps> = ({ decks, width }) => {
           >
             {state => (
               <div ref={nodeRef}>
-                <Chessboard
+                <StudyChessBoard
                   position={getPosition(state)}
-                  boardOrientation={orientation}
-                  boardWidth={width}
-                  arePiecesDraggable={true}
-                  areArrowsAllowed={false}
+                  orientation={orientation}
+                  width={width}
                   customArrows={
                     isPausingOnMistake
                       ? [[correctMove.from, correctMove.to]]
                       : []
                   }
-                  isDraggablePiece={({ piece }) => piece[0] === orientation[0]}
-                  onPieceDrop={(source, target) => {
+                  onMove={(source, target) => {
                     const isCorrect =
                       correctMove?.from === source && correctMove.to === target;
                     // delay showing the next card briefly to give feedback to the user
