@@ -1,34 +1,30 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Chess Flashcards
 
-## Getting Started
+This is a free and open-source prototype of a flashcards system for
+Chess. I find that I'll often watch a YouTube video about a new cool
+opening or concept, but then immediately forget everything I learned
+in the video when I try to play. This is an attempt to address that by
+turning openings and concepts into studyable flashcards.
 
-First, run the development server:
+## Building / Running
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+This is a NextJS app. You can install dependencies using `yarn install` and then run in dev using `yarn dev`.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Adding decks
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+You can add more decks in the `data/database.ts` file. Hopefully the format there should be self-explanatory. You'll just need a list of PGN lines and some metadata about the deck you want to add.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## Contributing
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Feel free to open an issue with any bugs / ideas / improvements that you want to discuss. Also, pull requests are welcome!
 
-## Learn More
+## Where is this going?
 
-To learn more about Next.js, take a look at the following resources:
+I'll add more openings and content on here as I learn them. If there's
+an opening or content you'd like to add, feel free to open a pull
+request on Github to create a new deck.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+If this becomes popular it might make sense to turn this into a database-backed web application
+where anyone can upload their own chess flashcard decks. There's a lot of possible ways this could go, for example adding user accounts and proper spaced repetition studying for the content for long-term retention. For now this is just a plain static site for ease of maintenance and deployment.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Happy Studying!
