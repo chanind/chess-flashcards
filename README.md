@@ -1,4 +1,5 @@
 # Chess Flashcards
+### Live Demo: [chanind.github.io/chess-flashcards](https://chanind.github.io/chess-flashcards/)
 
 This is a free and open-source prototype of a flashcards system for
 Chess. I find that I'll often watch a YouTube video about a new cool
