@@ -21,6 +21,7 @@ import {
 } from './studyState';
 import StudyComplete from './StudyComplete';
 import ProgressBar from './ProgressBar';
+import Pill from '../Pill';
 
 export interface StudierProps {
   decks: Deck[];
@@ -91,7 +92,7 @@ const Studier: FC<StudierProps> = ({ decks }) => {
   const startFen = chess.fen();
   const correctMove = chess
     .moves({ verbose: true })
-    .find(move => move.san === card.correctMove);
+    .find(move => move.san === card.correctMove)!;
   const orientation = chess.turn() === 'b' ? 'black' : 'white';
   chess.move(card.correctMove);
   const endFen = chess.fen();
@@ -104,6 +105,7 @@ const Studier: FC<StudierProps> = ({ decks }) => {
   };
 
   const cardNum = totalCardsInRound - remainingCardIdentifiersInRound.length;
+  const isPausingOnMistake = studyState.intermediateState?.isCorrect === false;
   return (
     <div className="my-2" style={{ width: `${BOARD_SIZE}px` }}>
       <div>
@@ -130,6 +132,11 @@ const Studier: FC<StudierProps> = ({ decks }) => {
                   boardWidth={BOARD_SIZE}
                   arePiecesDraggable={true}
                   areArrowsAllowed={false}
+                  customArrows={
+                    isPausingOnMistake
+                      ? [[correctMove.from, correctMove.to]]
+                      : []
+                  }
                   isDraggablePiece={({ piece }) => piece[0] === orientation[0]}
                   onPieceDrop={(source, target) => {
                     const isCorrect =
@@ -140,7 +147,7 @@ const Studier: FC<StudierProps> = ({ decks }) => {
                       () => {
                         setStudyState(recordStudyResult(studyState, isCorrect));
                       },
-                      isCorrect ? 300 : 1000,
+                      isCorrect ? 300 : 2000,
                     );
                     return isCorrect;
                   }}
@@ -169,20 +176,7 @@ const Studier: FC<StudierProps> = ({ decks }) => {
             </span>
           </h2>
           <div className="text-xs font-semibold">
-            Move as{' '}
-            <span
-              className={classNames(
-                'text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full',
-                {
-                  'bg-gray-200': orientation === 'white',
-                  'text-gray-800': orientation === 'white',
-                  'bg-gray-800': orientation === 'black',
-                  'text-gray-400': orientation === 'black',
-                },
-              )}
-            >
-              {orientation}
-            </span>
+            Move as <Pill color={orientation}>{orientation}</Pill>
           </div>
         </div>
       </div>

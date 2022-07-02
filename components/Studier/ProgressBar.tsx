@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { XIcon } from '@heroicons/react/solid';
+import Pill from '../Pill';
 
 export interface ProgressBarProps {
   percent: number;
@@ -18,14 +19,16 @@ const ProgressBar: FC<ProgressBarProps> = ({
     <div className="flex mb-2 items-center justify-between">
       <div>
         <div className="flex items-center">
-          <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-blue-600 bg-blue-200">
-            {title}
-          </span>
+          <Pill color="blue">{title}</Pill>
           {totalWrong > 0 && (
-            <div className="ml-3 text-xs font-semibold text-red-500 flex items-center">
-              <span className="mr-1">{totalWrong}</span>{' '}
-              <XIcon className="w-5 h-5 text-red-500 inline" />
-            </div>
+            <span className="ml-1">
+              <Pill color="red">
+                <span className="flex items-center">
+                  <XIcon className="w-3 h-3 text-red-800 inline" />
+                  <span className="ml-1">{totalWrong} mistakes</span>
+                </span>
+              </Pill>
+            </span>
           )}
         </div>
       </div>
