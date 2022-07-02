@@ -34,7 +34,6 @@ export const getStaticProps: GetStaticProps<StudyDeckProps> = context => {
 
 const StudyDeck: NextPage<StudyDeckProps> = ({ deck }) => {
   const { observe, width } = useDimensions();
-  console.log(width);
   return (
     <Layout>
       <h1 className="text-xl">
