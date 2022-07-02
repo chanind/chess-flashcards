@@ -1,7 +1,6 @@
 import { Chess } from 'chess.js';
 import { FC, useEffect, useRef, useState } from 'react';
 import { Chessboard } from 'react-chessboard';
-import classNames from 'classnames';
 import { Transition } from 'react-transition-group';
 import { ENTERING, TransitionStatus } from 'react-transition-group/Transition';
 import { CheckIcon, XIcon } from '@heroicons/react/solid';
@@ -25,6 +24,7 @@ import Pill from '../Pill';
 
 export interface StudierProps {
   decks: Deck[];
+  width: number;
 }
 
 interface CardsMap {
@@ -33,8 +33,6 @@ interface CardsMap {
     deck: Deck;
   };
 }
-
-const BOARD_SIZE = 500;
 
 const buildCardsMap = (decks: Deck[]): CardsMap => {
   const cardsMap: CardsMap = {};
@@ -49,7 +47,7 @@ const buildCardsMap = (decks: Deck[]): CardsMap => {
   return cardsMap;
 };
 
-const Studier: FC<StudierProps> = ({ decks }) => {
+const Studier: FC<StudierProps> = ({ decks, width }) => {
   // this gets rid of an error about transitionGroups
   // https://stackoverflow.com/questions/60903335/warning-finddomnode-is-deprecated-in-strictmode-finddomnode-was-passed-an-inst
   const nodeRef = useRef(null);
@@ -107,7 +105,7 @@ const Studier: FC<StudierProps> = ({ decks }) => {
   const cardNum = totalCardsInRound - remainingCardIdentifiersInRound.length;
   const isPausingOnMistake = studyState.intermediateState?.isCorrect === false;
   return (
-    <div className="my-2" style={{ width: `${BOARD_SIZE}px` }}>
+    <div className="my-2" style={{ width: `${width}px` }}>
       <div>
         <ProgressBar
           percent={(100 * cardNum) / totalCardsInRound}
@@ -129,7 +127,7 @@ const Studier: FC<StudierProps> = ({ decks }) => {
                 <Chessboard
                   position={getPosition(state)}
                   boardOrientation={orientation}
-                  boardWidth={BOARD_SIZE}
+                  boardWidth={width}
                   arePiecesDraggable={true}
                   areArrowsAllowed={false}
                   customArrows={
@@ -158,7 +156,7 @@ const Studier: FC<StudierProps> = ({ decks }) => {
           {studyState.intermediateState && (
             <div
               className="absolute left-0 top-0 flex z-10 justify-center items-center"
-              style={{ width: `${BOARD_SIZE}px`, height: `${BOARD_SIZE}px` }}
+              style={{ width: `${width}px`, height: `${width}px` }}
             >
               {studyState.intermediateState?.isCorrect ? (
                 <CheckIcon className="h-40 w-40 text-green-500 drop-shadow-lg" />
@@ -176,7 +174,8 @@ const Studier: FC<StudierProps> = ({ decks }) => {
             </span>
           </h2>
           <div className="text-xs font-semibold">
-            Move as <Pill color={orientation}>{orientation}</Pill>
+            <span className="hidden sm:inline">Move as</span>{' '}
+            <Pill color={orientation}>{orientation}</Pill>
           </div>
         </div>
       </div>

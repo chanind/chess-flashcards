@@ -6,9 +6,9 @@ import { getAllDecks } from '../data/database';
 const Home: NextPage = () => {
   return (
     <Layout>
-      <div className="grid grid-flow-col auto-cols-max">
+      <div className="flex flex-wrap">
         {getAllDecks().map(deck => (
-          <div className="mx-2" key={deck.id}>
+          <div className="mx-2 mb-4" key={deck.id}>
             <DeckPreview deck={deck} />
           </div>
         ))}

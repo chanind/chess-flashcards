@@ -1,13 +1,11 @@
-import {
-  GetStaticPaths,
-  GetStaticProps,
-  InferGetStaticPropsType,
-  NextPage,
-} from 'next';
+import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
+import useDimensions from 'react-cool-dimensions';
+import { ExternalLinkIcon } from '@heroicons/react/outline';
 import Layout from '../../../components/Layout';
 import NonSSRWrapper from '../../../components/NonSSRWrapper';
 import Studier from '../../../components/Studier/Studier';
 import { getAllDecks, getDeckById } from '../../../data/database';
+import Deck from '../../../models/Deck';
 
 export const getStaticPaths: GetStaticPaths = () => {
   const decks = getAllDecks();
@@ -19,7 +17,11 @@ export const getStaticPaths: GetStaticPaths = () => {
   };
 };
 
-export const getStaticProps: GetStaticProps = context => {
+interface StudyDeckProps {
+  deck: Deck;
+}
+
+export const getStaticProps: GetStaticProps<StudyDeckProps> = context => {
   if (!context.params?.id || Array.isArray(context.params.id)) {
     return { notFound: true };
   }
@@ -30,18 +32,36 @@ export const getStaticProps: GetStaticProps = context => {
   return { props: { deck } };
 };
 
-const StudyDeck: NextPage = ({
-  deck,
-}: InferGetStaticPropsType<typeof getStaticProps>) => {
+const StudyDeck: NextPage<StudyDeckProps> = ({ deck }) => {
+  const { observe, width } = useDimensions();
+  console.log(width);
   return (
     <Layout>
       <h1 className="text-xl">
         <span className="text-gray-400">Study</span> {deck.title}
       </h1>
-      <div>
-        <NonSSRWrapper>
-          <Studier decks={[deck]} />
-        </NonSSRWrapper>
+      <div style={{ maxWidth: '500px' }} ref={observe}>
+        <p className="text-gray-600 mt-1 mb-2 text-sm">
+          {deck.description}
+          <span className="ml-1">
+            {deck.sources.map((source, i) => (
+              <a
+                href={source.url}
+                className="text-blue-600 text-xs ml-1"
+                key={i}
+                target="_blank"
+              >
+                {i + 1}
+                <ExternalLinkIcon className="inline h-3 w-3 relative bottom-[2px]" />
+              </a>
+            ))}
+          </span>
+        </p>
+        <div>
+          <NonSSRWrapper>
+            <Studier decks={[deck]} width={width} />
+          </NonSSRWrapper>
+        </div>
       </div>
     </Layout>
   );

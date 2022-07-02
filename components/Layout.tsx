@@ -19,7 +19,7 @@ const Layout: FC<LayoutProps> = ({ children }) => {
       </Head>
 
       <HeaderNav />
-      <main className="container mt-4 mx-auto">{children}</main>
+      <main className="container mt-4 mx-auto px-2">{children}</main>
     </div>
   );
 };

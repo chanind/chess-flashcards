@@ -10,7 +10,7 @@ const decks: Deck[] = [
       orientation: 'white',
       fen: 'rnbqkb1r/pppp1ppp/5n2/4p3/4PP2/2N5/PPPP2PP/R1BQKBNR b KQkq f3 0 3',
     },
-    description: "Vienna Gambit lines from Levy Rosman's YouTube Tutorial",
+    description: "Vienna Gambit lines from Levy Rozman's YouTube Tutorial",
     cards: cardsFromPgnLines(
       [
         `1. e4 e5 2. Nc3 Nf6 3. f4 exf4 4. e5 Ng8 5. Nf3 d6 6. d4 dxe5 7. Qe2 Bb4 8. Qxe5+ Qe7 9. Bxf4 *`,
@@ -29,6 +29,12 @@ const decks: Deck[] = [
       ],
       { orientation: 'white' },
     ),
+    sources: [
+      {
+        name: 'WIN WITH 1. E4 | The Vienna Gambit | Levy Rozman',
+        url: 'https://www.youtube.com/watch?v=JVxENCPcCjU',
+      },
+    ],
   },
   {
     id: 2,
@@ -38,7 +44,27 @@ const decks: Deck[] = [
       fen: 'r1bqkb1r/ppp2ppp/2p2n2/8/4P3/8/PPPP1PPP/RNBQKB1R w KQkq - 0 5',
     },
     description: 'Stafford Gambit lines from Eric Rosen on YouTube',
-    cards: [],
+    cards: cardsFromPgnLines(
+      [
+        `1. e4 e5 2. Nf3 Nf6 3. Nxe5 Nc6 4. Nxc6 dxc6 5. d3 Bc5 6. Bg5 Nxe4 7. Bxd8 Bxf2+ 8. Ke2 Bg4#`,
+        `1. e4 e5 2. Nf3 Nf6 3. Nxe5 Nc6 4. Nxc6 dxc6 5. d3 Bc5 6. Bg5 Nxe4 7. dxe4 Bxf2+ 8. Kxf2 Qxd1`,
+        `1. e4 e5 2. Nf3 Nf6 3. Nxe5 Nc6 4. Nxc6 dxc6 5. d3 Bc5 6. Bg5 Nxe4 7. Be3 Bxe3 8. fxe3 Qh4+ 9. g3 Nxg3`,
+        `1. e4 e5 2. Nf3 Nf6 3. Nxe5 Nc6 4. Nxc6 dxc6 5. f3 Nh5 6. Nc3 Qh4+ 7. g3 Nxg3`,
+        `1. e4 e5 2. Nf3 Nf6 3. Nxe5 Nc6 4. Nxc6 dxc6 5. d3 Bc5 6. Nc3 Ng4 7. Qf3 Nxf2`,
+        `1. e4 e5 2. Nf3 Nf6 3. Nxe5 Nc6 4. Nxc6 dxc6 5. d3 Bc5 6. Nc3 Ng4 7. Be3 Nxe3 8. fxe3 Bxe3 9. Qf3 Qg5`,
+        `1. e4 e5 2. Nf3 Nf6 3. Nxe5 Nc6 4. Nxc6 dxc6 5. Nc3 Bc5 6. Bc4 Ng4 7. O-O Qh4 8. h3 Nxf2 9. Qf3 Nxh3+ 10. Kh1 Nf2+ 11. Kg1 Qh1#`,
+        `1. e4 e5 2. Nf3 Nf6 3. Nxe5 Nc6 4. Nxc6 dxc6 5. Nc3 Bc5 6. h3 h5 7. Be2 Qd4 8. O-O Ng4 9. hxg4 hxg4 10. d3 Qe5 11. g3 Qxg3#`,
+        `1. e4 e5 2. Nf3 Nf6 3. Nxe5 Nc6 4. Nxc6 dxc6 5. e5 Ne4 6. d3 Bc5 7. dxe4 Bxf2+`,
+        `1. e4 e5 2. Nf3 Nf6 3. Nxe5 Nc6 4. Nxc6 dxc6 5. e5 Ne4 6. d4 Qh4 7. g3 Nxg3 8. fxg3 Qe4+`,
+      ],
+      { orientation: 'black' },
+    ),
+    sources: [
+      {
+        name: 'A Beginner Lesson in the Stafford Gambit | Eric Rosen',
+        url: 'https://www.youtube.com/watch?v=XkB4IVNaZWw',
+      },
+    ],
   },
 ];
 

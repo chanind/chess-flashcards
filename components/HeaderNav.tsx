@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 const HeaderNav = () => (
-  <nav className="flex items-center justify-between flex-wrap bg-gray-800 p-4">
+  <nav className="flex items-center justify-between flex-wrap bg-gray-800 py-4 sm:p-4">
     <Link href="/">
       <div className="flex items-center flex-no-shrink mr-6 cursor-pointer">
         <svg
@@ -26,13 +26,13 @@ const HeaderNav = () => (
     <div className="w-full flex items-center w-auto">
       <div className="text-sm flex-grow">
         <Link href="/about">
-          <a className="block mt-4 inline-block mt-0 text-gray-200 hover:text-white mr-4">
+          <a className="block mt-4 inline-block mt-0 text-gray-200 hover:text-white mx-2">
             About
           </a>
         </Link>
         <a
           href="https://github.com/chanind/chess-flashcards"
-          className="block mt-4 inline-block mt-0 text-gray-200 hover:text-white mr-4"
+          className="block mt-4 inline-block mt-0 text-gray-200 hover:text-white mx-2"
         >
           Github
         </a>

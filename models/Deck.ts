@@ -10,6 +10,10 @@ interface Deck {
   };
   description: string;
   cards: Flashcard[];
+  sources: {
+    name: string;
+    url: string;
+  }[];
 }
 
 export default Deck;
