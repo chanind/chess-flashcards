@@ -15,6 +15,7 @@ const StudyChessBoard: FC<StudyChessBoardProps> = ({
   position,
   width,
   orientation,
+  customArrows,
   onMove,
 }) => {
   const [moveFrom, setMoveFrom] = useState<Square | null>(null);
@@ -23,21 +24,34 @@ const StudyChessBoard: FC<StudyChessBoardProps> = ({
   const highlightSquares: { [key: string]: { [prop: string]: string } } = {};
   let validMoves: Move[] = [];
 
+  const moveIfValid = (from: Square, to: Square): boolean => {
+    const isValid = !!game
+      .moves({ square: from, verbose: true })
+      .find(move => move.to === to);
+    if (isValid) {
+      onMove(from, to);
+    }
+    return isValid;
+  };
+
   if (moveFrom) {
     validMoves = game.moves({
       square: moveFrom,
       verbose: true,
     });
     validMoves.map(move => {
+      const moveToPiece = game.get(move.to);
       highlightSquares[move.to] = {
         background:
-          'radial-gradient(circle, rgba(0,0,0,.1) 85%, transparent 85%)',
+          moveToPiece && moveToPiece.color !== game.get(moveFrom)?.color
+            ? 'radial-gradient(circle, rgba(0,0,0,.1) 85%, transparent 85%)'
+            : 'radial-gradient(circle, rgba(0,0,0,.1) 25%, transparent 25%)',
         borderRadius: '50%',
       };
       return move;
     });
     highlightSquares[moveFrom] = {
-      boxShadow: 'inset 0px 0px 5px rgba(0, 0, 0, 0.3)',
+      background: 'rgba(37, 99, 235, 0.4)',
     };
   }
 
@@ -52,7 +66,7 @@ const StudyChessBoard: FC<StudyChessBoardProps> = ({
     }
 
     if (square !== moveFrom) {
-      onMove(moveFrom, square);
+      moveIfValid(moveFrom, square);
     }
     setMoveFrom(null);
   };
@@ -65,12 +79,10 @@ const StudyChessBoard: FC<StudyChessBoardProps> = ({
       areArrowsAllowed={false}
       boardWidth={width}
       position={position}
+      customArrows={customArrows}
       isDraggablePiece={({ piece }) => piece[0] === orientation[0]}
       onSquareClick={onSquareClick}
-      onPieceDrop={(from, to) => {
-        onMove(from, to);
-        return true;
-      }}
+      onPieceDrop={moveIfValid}
       customSquareStyles={{
         ...highlightSquares,
       }}

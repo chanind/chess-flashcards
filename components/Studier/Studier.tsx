@@ -16,6 +16,7 @@ import {
   isStudyingComplete,
   recordStudyResult,
   studyAgain,
+  studyMistakes,
   StudyState,
 } from './studyState';
 import StudyComplete from './StudyComplete';
@@ -74,6 +75,7 @@ const Studier: FC<StudierProps> = ({ decks, width }) => {
           totalMistakes={totalMistakes}
           totalRounds={roundNum + 1}
           onStudyAgain={() => setStudyState(studyAgain(studyState))}
+          onStudyMistakes={() => setStudyState(studyMistakes(studyState))}
         />
       </div>
     );

@@ -4,12 +4,14 @@ interface StudyCompleteProps {
   totalRounds: number;
   totalMistakes: number;
   onStudyAgain: () => void;
+  onStudyMistakes: () => void;
 }
 
 const StudyComplete: FC<StudyCompleteProps> = ({
   totalRounds,
   totalMistakes,
   onStudyAgain,
+  onStudyMistakes,
 }) => {
   const text = totalMistakes == 0 ? 'Perfect score!' : 'Nice Job!';
   return (
@@ -26,7 +28,14 @@ const StudyComplete: FC<StudyCompleteProps> = ({
       <div className="mt-4">
         <button
           type="button"
-          className="text-white bg-blue-600 font-medium rounded-md text-sm px-5 py-2.5 text-center inline-flex items-center mt-4"
+          className="mr-2 text-white bg-blue-600 font-medium rounded-md text-sm px-5 py-2.5 text-center inline-flex items-center mt-4"
+          onClick={onStudyMistakes}
+        >
+          Study Mistakes
+        </button>
+        <button
+          type="button"
+          className="text-white bg-green-600 font-medium rounded-md text-sm px-5 py-2.5 text-center inline-flex items-center mt-4"
           onClick={onStudyAgain}
         >
           Study Again

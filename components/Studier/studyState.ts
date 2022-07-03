@@ -75,6 +75,13 @@ export const recordStudyResult = (
 export const studyAgain = (state: StudyState): StudyState =>
   getInitialStudyState(Object.keys(state.cardHistories));
 
+export const studyMistakes = (state: StudyState): StudyState => {
+  const mistakes = Object.keys(state.cardHistories).filter(identifier =>
+    state.cardHistories[identifier].history.includes(false),
+  );
+  return getInitialStudyState(mistakes);
+};
+
 // --- selectors ---
 
 export const getCurrentRound = (state: StudyState): number => {
